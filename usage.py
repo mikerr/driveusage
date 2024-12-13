@@ -16,8 +16,11 @@ def checkend(i):
     i = float(i) * factor
     return i
 
-while True:
+def printtext(text,x,y):
+    img = font.render(text, True, pen)
+    screen.blit(img, (x, y))
 
+while True:
     output = subprocess.check_output("lsblk",text=True)
     lines = output.split("\n")
 
@@ -36,7 +39,6 @@ while True:
         pygame.display.flip()
         continue
     largestpart = sorted(parts)[-1][1]
-
     time.sleep(1)
 
     try:
@@ -63,16 +65,12 @@ while True:
 
     y = 0
     pen = (0,255,255)
-    text = "USB DRIVE USAGE"
-    img = font.render(text, True, pen)
-    screen.blit(img, (40, y))
-
-    text = "%s       %s / %s " % (name,usage, size)
+    printtext("USB DRIVE USAGE")
     
     y += 50
     pen = (0,255,255)
-    img = font.render(text, True, pen)
-    screen.blit(img, (0, y))
+    text = "%s       %s / %s " % (name,usage, size)
+    printtext(text,0,y)
     
     # draw gauge
     y += 30
@@ -82,16 +80,12 @@ while True:
     
     # show files
     y += 55
-    text = "Files:"
-    img = font.render(text, True, pen)
-    screen.blit(img, (0, y))
+    printtext("Files",0,y)
     
     y += 20
     dir_list = os.listdir("/")
     for name in dir_list:
-        text = name
-        img = font.render(text, True, pen)
-        screen.blit(img, (20, y))
+        printtext(name,20,y)
         y += 20
         if y > 240 : break
     
