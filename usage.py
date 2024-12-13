@@ -83,7 +83,7 @@ while True:
     printtext("Files",0,y)
     
     y += 20
-    dir_list = os.listdir("/")
+    dir_list = os.listdir(mount)
     for name in dir_list:
         printtext(name,20,y)
         y += 20
