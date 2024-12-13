@@ -44,7 +44,7 @@ while True:
     except: continue
     if (largestpart not in output) :
         if not os.path.exists("/tmp/hdd"):
-            output = subprocess.check_output(["sudo","mkdir","/tmp/hdd"],text=True)
+            os.mkdir("/tmp/hdd")
         try:
             output = subprocess.check_output(["sudo","mount","/dev/" + largestpart, "/tmp/hdd"],text=True)
             output = subprocess.check_output(["df","-h","/dev/" + largestpart],text=True)
